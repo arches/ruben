@@ -6,35 +6,53 @@
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
-  
+
   <%= csrf_meta_tag %>
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-3177874-7']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
 </head>
 <body>
 
-  <div style="width:600px;margin:auto;background:#f3f3f3;position:relative;">
+<div style="width:600px;margin:auto;background:#f3f3f3;position:relative;">
 
-    <div style="text-align:center;background:#db7093;padding:10px;position:relative;">
-      <h1>RUBEN</h1>
-      <p>
-        Get better at Ruby.
-      </p>
+  <div style="text-align:center;background:#db7093;padding:10px;position:relative;">
+    <h1>RUBEN</h1>
 
-      <div style="position:absolute;right:0px;bottom:0px;text-align:right;font-size:10px;">
-        <%= session[:correct].size %>/<%= session[:total] %> in <%= session[:tries] %> tries&nbsp;&nbsp;&nbsp;&nbsp;
-        <%= link_to "reset", "/?r=true", :style => "font-size: 10px;" %>
-      </div>
-    </div>
+    <p>
+      Get better at Ruby.
+    </p>
 
-    <div style="position:relative;min-height:300px;margin:20px;">
-      <%= yield %>
-    </div>
-
-    <div id="contact" style="border-top: 1px solid #ddd;text-align:center;background:#e4e4e4;font-size:10px;">
-      <script>
-        $("#contact")[0].innerHTML = ["<a href='", "mail", "to", ":", "blaimue", "@", "gmail", ".", "com", "?subject=[ruben] Practice Question #<%= @question.id %>", "'>", "Chris Doyle", "</a>"].join("");
-      </script>
+    <div style="position:absolute;right:0px;bottom:0px;text-align:right;font-size:10px;">
+      <%= session[:correct].size %>/<%= session[:total] %> in <%= session[:tries] %> tries&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= link_to "reset", "/?r=true", :style => "font-size: 10px;" %>
     </div>
   </div>
+
+  <div style="position:relative;min-height:300px;margin:20px;">
+    <%= yield %>
+  </div>
+
+  <div id="contact" style="border-top: 1px solid #ddd;text-align:center;background:#e4e4e4;font-size:10px;">
+    <script>
+      $("#contact")[0].innerHTML = ["<a href='", "mail", "to", ":", "blaimue", "@", "gmail", ".", "com", "?subject=[ruben] Practice Question #<%= @question.id %>", "'>", "Chris Doyle", "</a>"].join("");
+    </script>
+  </div>
+</div>
 
 </body>
 </html>

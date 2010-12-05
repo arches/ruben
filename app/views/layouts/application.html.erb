@@ -29,8 +29,10 @@
       <%= yield %>
     </div>
 
-    <div style="border-top: 1px solid #ddd;text-align:center;background:#e4e4e4;font-size:10px;">
-      Chris Doyle
+    <div id="contact" style="border-top: 1px solid #ddd;text-align:center;background:#e4e4e4;font-size:10px;">
+      <script>
+        $("#contact")[0].innerHTML = ["<a href='", "mail", "to", ":", "blaimue", "@", "gmail", ".", "com", "?subject=[ruben] Practice Question #<%= @question.id %>", "'>", "Chris Doyle", "</a>"].join("");
+      </script>
     </div>
   </div>
 

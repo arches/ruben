@@ -14,13 +14,6 @@
 
 <% else %>
 
-<div style="position:absolute;right:0px;top:0px;text-align:right;">
-<%= session[:correct].size %>/<%= session[:total] %> in <%= session[:tries] %> tries
-  <br>
-  <%= link_to "reset", "/?r=true", :style => "font-size: 10px;" %>
-</div>
-
-
 <p>
   <%= @question.description.html_safe %>
 </p>

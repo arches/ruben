@@ -13,11 +13,16 @@
 
   <div style="width:600px;margin:auto;background:#f3f3f3;position:relative;">
 
-    <div style="text-align:center;background:#db7093;padding:10px;">
+    <div style="text-align:center;background:#db7093;padding:10px;position:relative;">
       <h1>RUBEN</h1>
       <p>
         Get better at Ruby.
       </p>
+
+      <div style="position:absolute;right:0px;bottom:0px;text-align:right;font-size:10px;">
+        <%= session[:correct].size %>/<%= session[:total] %> in <%= session[:tries] %> tries&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to "reset", "/?r=true", :style => "font-size: 10px;" %>
+      </div>
     </div>
 
     <div style="position:relative;min-height:300px;margin:20px;">

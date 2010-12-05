@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
 
+  layout false
+
   def check
 
     dupe = {}

@@ -1,6 +1,10 @@
 class QuestionsController < ApplicationController
 
   def check
+
+    dupe = {}
+    dupes = []
+
     questions = Question.all
     problems = []
     ok = []
@@ -10,12 +14,18 @@ class QuestionsController < ApplicationController
           eval(question.context)
           eval(question.prompt)
         end
+        key = "#{question.context}#{question.prompt}#{question.answer}".hash
+        if dupe.has_key? key
+          dupes.push([question.id, dupe[key]])
+        else
+          dupe[key] = question.id
+        end
         ok.push(question.id)
       rescue
         problems.push(question.id)
       end
     end
-    raise "#{ok.size}/#{questions.size} ok. #{"Problems: " + problems.inspect.to_s if problems.size > 0 }"
+    raise "#{ok.size}/#{questions.size} ok. #{"Problems: " + problems.inspect.to_s if problems.size > 0 } #{"Dupes: " + dupes.inspect if dupes.size > 0 }"
   end
 
   # GET /questions

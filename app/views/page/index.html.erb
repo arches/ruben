@@ -14,7 +14,7 @@
 
 <% else %>
 
-<div style="position:absolute;top:10px;right:400px;text-align:right;">
+<div style="position:absolute;right:0px;top:0px;text-align:right;">
 <%= session[:correct].size %>/<%= session[:total] %> in <%= session[:tries] %> tries
   <br>
   <%= link_to "reset", "/?r=true", :style => "font-size: 10px;" %>
@@ -42,7 +42,7 @@
 
   <% # don't eval if an answer is provided! some stuff we can't just eval. %>
   <% unless @question.answer.blank? %>
-    <span id="k"><%= @question.answer.html_safe %></span>
+    <span id="j"><span id="k"><%= @question.answer.html_safe %></span></span>
   <% else %>
     <% eval(@question.context) %>
     <span id="j">Nope, it's <span id="k"><%= eval(@question.prompt).inspect.html_safe %></span></span>

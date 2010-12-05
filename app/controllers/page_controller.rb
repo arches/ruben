@@ -17,16 +17,17 @@ class PageController < ApplicationController
     session[:correct] ||= []
     session[:tries] ||= -1  # first load doesn't count
 
-    # pull either a) a specific question, b) a random unanswered question, or c) a random question
-    @question = Question.find(params[:q]) if params[:q]
-    @question ||= Question.find(session[:remaining].choice) if session[:remaining].size > 0
-    @question ||= Question.all.choice
-
+    # record results of previous question
     session[:tries] = session[:tries] + 1
     if params[:c]
       session[:correct].push(params[:c].to_i).uniq!
       session[:remaining].delete(params[:c].to_i)
     end
+
+    # pull either a) a specific question, b) a random unanswered question, or c) a random question
+    @question = Question.find(params[:q]) if params[:q]
+    @question ||= Question.find(session[:remaining].choice) if session[:remaining].size > 0
+    @question ||= Question.all.choice
 
     if session[:remaining].empty? and session[:correct].size == session[:total]
       @congrats = true

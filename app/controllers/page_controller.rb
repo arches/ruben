@@ -24,7 +24,7 @@ class PageController < ApplicationController
 
     session[:tries] = session[:tries] + 1
     if params[:c]
-      session[:correct].push(params[:c].to_i)
+      session[:correct].push(params[:c].to_i).uniq!
       session[:remaining].delete(params[:c].to_i)
     end
 

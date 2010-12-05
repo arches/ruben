@@ -55,7 +55,6 @@
 <script type="text/javascript">
 
   $("input").bind('keyup', function(e){
-    console.log(e.keyCode);
     if (e.keyCode == 13) {
       check();
     }
@@ -76,12 +75,6 @@
     }
     answer[0].style.display = 'block';
     $(".next").focus();
-  }
-
-  function key_check(e) {
-    if (e.keyCode == 100) {
-
-    }
   }
 </script>
 <% end %>

@@ -1,0 +1,27 @@
+<h1>Listing questions</h1>
+
+<table>
+  <tr>
+    <th>Context</th>
+    <th>Prompt</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @questions.each do |question| %>
+  <tr>
+    <td><%= question.context %></td>
+    <td><%= question.prompt %></td>
+    <td><%= question.description %></td>
+    <td><%= link_to 'Show', root_path(:q => question.id) %></td>
+    <td><%= link_to 'Edit', edit_question_path(question) %></td>
+    <td><%= link_to 'Destroy', question, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Question', new_question_path %>

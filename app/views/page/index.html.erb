@@ -1,0 +1,87 @@
+
+<% if @congrats %>
+
+  <br><br><br>
+  Congratulations!! You answered all <%= session[:total] %> questions correctly!! And it only took you <%= session[:tries] %> tries :) You can <%= link_to "reset", "/?r=true" %> and try for a better score.
+  <br><br><br>
+
+  <div style="background:black">
+    <% 0.upto(100) do |i| %>
+      <%= image_tag "http://bestanimations.com/holidays/fireworks/Fireworks-0#{[1,2,3,4].choice}-june.gif" %>
+    <% end %>
+  </div>
+
+
+<% else %>
+
+<div style="position:absolute;top:10px;right:400px;text-align:right;">
+<%= session[:correct].size %>/<%= session[:total] %> in <%= session[:tries] %> tries
+  <br>
+  <%= link_to "reset", "/?r=true", :style => "font-size: 10px;" %>
+</div>
+
+
+<p>
+  <%= @question.description.html_safe %>
+</p>
+
+<p>
+  <%= @question.context.html_safe.gsub("\r\n", "<br>") %>
+</p>
+
+<p>
+  <%= @question.prompt.html_safe %> &nbsp;&nbsp;&nbsp; #
+  <%= text_field_tag 'scratch', '', :style => "border:none;" %>
+
+  <%= submit_tag "check", :onclick => 'check();' %>
+
+</p>
+
+<div id="answer" style="display:none;">
+  <br>
+
+  <% # don't eval if an answer is provided! some stuff we can't just eval. %>
+  <% unless @question.answer.blank? %>
+    <span id="k"><%= @question.answer.html_safe %></span>
+  <% else %>
+    <% eval(@question.context) %>
+    <span id="j">Nope, it's <span id="k"><%= eval(@question.prompt).inspect.html_safe %></span></span>
+  <% end %>
+
+  <br><br>
+  <%= link_to 'next', "/", :class => 'next' %>
+</div>
+
+<script type="text/javascript">
+
+  $("input").bind('keyup', function(e){
+    console.log(e.keyCode);
+    if (e.keyCode == 13) {
+      check();
+    }
+  });
+
+  $('#scratch').focus();
+
+  function check() {
+    var answer = $('#answer');
+    var scratch = $('#scratch');
+    var result = $('#result');
+    var explanation = $('#explanation');
+    var k = $('#k');
+    if (scratch[0].value == k[0].innerHTML) {
+      $("#j")[0].innerHTML = 'nice!';
+      $(".next").attr("href", "/?c=<%= @question.id %>");
+      $(".next").focus();
+    }
+    answer[0].style.display = 'block';
+    $(".next").focus();
+  }
+
+  function key_check(e) {
+    if (e.keyCode == 100) {
+
+    }
+  }
+</script>
+<% end %>

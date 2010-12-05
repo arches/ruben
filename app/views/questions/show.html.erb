@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Context:</b>
+  <%= @question.context %>
+</p>
+
+<p>
+  <b>Prompt:</b>
+  <%= @question.prompt %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @question.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

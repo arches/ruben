@@ -1,6 +1,7 @@
 class PageController < ApplicationController
 
   def test
+    render :layout => false
   end
 
   def index

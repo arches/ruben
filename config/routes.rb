@@ -1,5 +1,7 @@
 Rcards::Application.routes.draw do
 
+  match 'test' => 'page#test'
+
 #  resources :questions do
 #    collection do
 #      get :check

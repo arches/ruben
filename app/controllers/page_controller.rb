@@ -1,5 +1,7 @@
 class PageController < ApplicationController
 
+  def test
+  end
 
   def index
 
